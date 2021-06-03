@@ -1,5 +1,5 @@
 {
-    "name": "fengxing/dhgateapi",
+    "name": "test/dhgateapi",
     "description": "dhgate sdk for php is a development kit that supports PHP developers to quickly access dhgate.com openapi, and is supported by dhgatesdk Client for PHP. Dhgate SDK for PHP allows you to access dhgate's photo albums, products, orders and other information without complicated programming",
     "type": "library",
     "license": "mit",
