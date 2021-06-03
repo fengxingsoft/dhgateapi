@@ -1,0 +1,23 @@
+{
+    "name": "com/dhgate",
+    "description": "dhgate sdk for php is a development kit that supports PHP developers to quickly access dhgate.com openapi, and is supported by dhgatesdk Client for PHP. Dhgate SDK for PHP allows you to access dhgate's photo albums, products, orders and other information without complicated programming",
+    "type": "library",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "赵亚飞",
+            "email": "56044335@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": "true",
+    "require": {
+      "php": ">=7.0"
+    },
+    "autoload": {
+    "psr-4": {
+      "com\\dhgate\\": "openapi/"
+    }
+  }
+}
+ 
