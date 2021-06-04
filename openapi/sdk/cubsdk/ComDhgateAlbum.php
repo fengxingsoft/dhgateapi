@@ -34,8 +34,8 @@ class ComDhgateAlbum
     private $accessHost = "secure.dhgate.com";
     private $httpPort = 80;
     private $httpsPort = 443;
-    private $appKey = 'dR62likZGM6Ptq6fv4RQ';
-    private $secKey = 'JeY2EcHhNXhxhyNqOmLpy9Uz7URVeH5Q';
+    private $appKey = '';
+    private $secKey = '';
     private $syncAPIClient;
     public function setServerHost($serverHost)
     {
