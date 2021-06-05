@@ -14,10 +14,10 @@ require __DIR__ . '/vendor/autoload.php';
 
 use AlibabaCloud\Client\AlibabaCloud;
 
-AlibabaCloud::accessKeyClient('accessKeyId', 'accessKeySecret')->asDefaultClient();
+'AlibabaCloud::accessKeyClient('accessKeyId', 'accessKeySecret')->asDefaultClient();'
 发起调用。
 使用RPC调用：
-<?php
+'<?php
 
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;
@@ -66,3 +66,4 @@ try {
     } catch (ServerException $exception) {
       print_r($exception->getErrorMessage());
   }
+'
