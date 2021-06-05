@@ -65,13 +65,13 @@ try {
     print_r($exception->getErrorMessage());
 }
 使用ROA调用：
-<?php
+    <?php
 
-use AlibabaCloud\Client\AlibabaCloud;
-use AlibabaCloud\Client\Exception\ClientException;
-use AlibabaCloud\Client\Exception\ServerException;
+    use AlibabaCloud\Client\AlibabaCloud;
+    use AlibabaCloud\Client\Exception\ClientException;
+    use AlibabaCloud\Client\Exception\ServerException;
 
-try {
+    try {
     $result = AlibabaCloud::roa()
                           ->regionId('cn-hangzhou') // 指定请求的地域，不指定则使用客户端地域、默认地域。
                           ->product('CS') // 指定产品。
@@ -87,8 +87,8 @@ try {
 
     print_r($result->toArray());
 
-} catch (ClientException $exception) {
+    } catch (ClientException $exception) {
     print_r($exception->getErrorMessage());
-} catch (ServerException $exception) {
-    print_r($exception->getErrorMessage());
-}
+    } catch (ServerException $exception) {
+      print_r($exception->getErrorMessage());
+  }
