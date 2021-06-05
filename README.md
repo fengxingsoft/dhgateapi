@@ -1,35 +1,9 @@
-# dhgateapi
-
-
-
-
-
-完成以下操作，通过Composer安装dhgate SDK for PHP作为依赖项。
-下载并安装Composer。
-Linux/MacOS：
-curl -sS https://getcomposer.org/installer | php
-假设下载composer.phar二进制文件至当前目录$HOME中。
-
-Windows：
-单击这里下载并安装Composer。
-
-设置环境变量。
-Linux/MacOS：
-说明 完成本步骤之前，请确保PATH系统变量值中存在/usr/local/bin路径，否则请您根据实际情况为Composer设置可用的环境变量。
-执行以下命令，将composer.phar二进制文件移动到全局环境/usr/local/bin/composer目录下。
-
-试用
-sudo mv composer.phar /usr/local/bin/composer
-成功设置环境变量后，您就可以直接在您的终端使用composer命令了。
-
-Windows：
-安装Composer过程中会自动配置环境变量，请跳过此步骤。
-
-执行以下命令，安装Alibaba Cloud SDK for PHP至当前目录下。
-composer require dhgateapi-com/dhgate
-说明 若由于网络问题无法正常安装，您可以使用阿里云Composer全量镜像。
-在PHP脚本中引入Composer自动加载工具。
-<?php
+ 
+ ##使用方法
+ composer require dhgateapi-com/dhgate
+ 
+###使用例子
+    <?php
 
 require __DIR__ . '/vendor/autoload.php'; 
 使用Alibaba Cloud SDK for PHP
