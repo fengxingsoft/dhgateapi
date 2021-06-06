@@ -1,51 +1,18 @@
  
- ##使用方法
+**使用方法**
+
  composer require dhgateapi-com/dhgate
  
-###使用例子
-    <?php
 
-require __DIR__ . '/vendor/autoload.php'; 
-使用Alibaba Cloud SDK for PHP
-以下代码示例展示了使用Alibaba Cloud SDK for PHP的基本步骤：
-
-初始化客户端。
-<?php
-
-use AlibabaCloud\Client\AlibabaCloud;
-
-'AlibabaCloud::accessKeyClient('accessKeyId', 'accessKeySecret')->asDefaultClient();'
-发起调用。
-使用RPC调用：
-'<?php
-
-use AlibabaCloud\Client\AlibabaCloud;
-use AlibabaCloud\Client\Exception\ClientException;
-use AlibabaCloud\Client\Exception\ServerException;
-
-try {
-    $result = AlibabaCloud::rpc()
-                          ->product('Cdn')
-                          ->version('2014-11-11')
-                          ->action('DescribeCdnService')
-                          ->method('POST')
-                          ->request();
-
-    print_r($result->toArray());
-
-} catch (ClientException $exception) {
-    print_r($exception->getErrorMessage());
-} catch (ServerException $exception) {
-    print_r($exception->getErrorMessage());
-}
-使用ROA调用：
-    <?php
-
+**使用例子**
+ 
+ 
+   `<?php
     use AlibabaCloud\Client\AlibabaCloud;
     use AlibabaCloud\Client\Exception\ClientException;
     use AlibabaCloud\Client\Exception\ServerException;
 
-    try {
+    try { 
     $result = AlibabaCloud::roa()
                           ->regionId('cn-hangzhou') // 指定请求的地域，不指定则使用客户端地域、默认地域。
                           ->product('CS') // 指定产品。
@@ -65,5 +32,5 @@ try {
     print_r($exception->getErrorMessage());
     } catch (ServerException $exception) {
       print_r($exception->getErrorMessage());
-  }
-'
+ 	 }
+`
