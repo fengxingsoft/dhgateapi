@@ -7,30 +7,74 @@
 **使用例子**
  
  
-   `<?php
-    use AlibabaCloud\Client\AlibabaCloud;
-    use AlibabaCloud\Client\Exception\ClientException;
-    use AlibabaCloud\Client\Exception\ServerException;
+    <?php
+    namespace app\index\controller;
 
-    try { 
-    $result = AlibabaCloud::roa()
-                          ->regionId('cn-hangzhou') // 指定请求的地域，不指定则使用客户端地域、默认地域。
-                          ->product('CS') // 指定产品。
-                          ->version('2015-12-15') // 指定产品版本。
-                          ->action('DescribeClusterServices') // 指定产品接口。
-                          ->serviceCode('cs') // 设置ServiceCode以备寻址，非必须。
-                          ->endpointType('openAPI') // 设置类型，非必须。
-                          ->method('GET') // 指定请求方式。
-                          ->host('cs.aliyun.com') // 指定域名则不会寻址，如认证方式为Bearer Token的服务则需要指定。
-                          ->pathPattern('/clusters/[ClusterId]/services') // 指定ROA风格路径规则。
-                          ->withClusterId('123456') // 为路径中参数赋值，方法名：with + 参数。
-                          ->request(); // 发起请求并返回结果对象，请求需要放在设置的最后面。
+    use com\dhgate\openapi\client\exception as ClientException;
+    use com\dhgate\openapi\sdk\cubsdk\ComDhgateAlbum;
+    use com\dhgate\openapi\sdk\cubsdk\ComDhgateFacade;
+    use com\dhgate\openapi\sdk\cubsdk\param\DhgateAlbum\DhgateAlbumGetParam;
+    use com\dhgate\openapi\sdk\cubsdk\param\DhgateAlbum\DhgateAlbumGetResult;
 
-    print_r($result->toArray());
+    Class Index
+    {
 
-    } catch (ClientException $exception) {
-    print_r($exception->getErrorMessage());
-    } catch (ServerException $exception) {
-      print_r($exception->getErrorMessage());
- 	 }
-`
+    private $acctoken;
+
+    /**
+     * @param $code
+     * @return array
+     * 获取token
+     */
+    public function gettoken($code)
+    {
+        $ComEbayFacade = new ComDhgateFacade();
+        $ComDhgateFacade->setAppKey('your appkey');
+        $ComDhgateFacade->setSecKey('your seckey');
+        $tokeninfo = $ComEbayFacade->getToken($code);
+        $accesstoken = $tokeninfo->getAccessToken();
+        $refertoken = $tokeninfo->getReferToken();
+        $expirein = $tokeninfo->getExpirein();
+        $createtime = $tokeninfo->setMilliSecond();
+        $updatetime = $tokeninfo->setMilliSecond();
+        $data = compact('accesstoken', 'refertoken', 'expirein', 'createtime', 'updatetime');
+        return $data;
+    }
+
+    /**
+     * @param $data
+     * @return \com\dhgate\openapi\client\entity\AuthorizationToken
+     *根据refertoken 获取token信息
+     */
+    public function getrefreshtoken($data)
+    {
+        $ComDhgateFacade = new ComDhgateFacade();
+        $ComDhgateFacade->setAppKey('your appkey');
+        $ComDhgateFacade->setSecKey('your seckey');
+        $ComDhgateFacade = new ComDhgateFacade();
+        $token = $ComDhgateFacade->refreshToken($data['refreshToken']);
+        $this->acctoken = $token;
+    }
+
+
+    /**
+     * @param $accesstoken
+     * @param $albWindowId
+     * @return DhgateAlbumGetResult
+     * dh.album.get$2.0 (卖家获取相册详情接口)
+     *  albWindowId    String    必须    该参数可通过调用dh.albums.get接口中返回值获得；示例值：ff8080812cbf8102012cbf81a18a0003    相册窗口ID
+     */
+    public function getAlbums($accesstoken, $albWindowId)
+    {
+        try {
+            $param = new DhgateAlbumGetParam();
+            $param->setAlbWindowId($albWindowId); //相册ID
+            $getalbum = new ComDhgateAlbum();
+            $resultDefiniton = new DhgateAlbumGetResult();
+            $albuminfo = $getalbum->DhgateAlbumGet($param, $accesstoken, $resultDefiniton);
+            return $albuminfo;
+        } catch (ClientException $exception) {
+            print_r($exception->getErrorMessage());
+        }
+     }
+    }
